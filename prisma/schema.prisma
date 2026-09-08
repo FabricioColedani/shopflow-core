@@ -1,0 +1,60 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Usuario {
+  id        Int      @id @default(autoincrement())
+  nombre    String
+  email     String   @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  pedidos   Pedido[]
+}
+
+model Categoria {
+  id        Int       @id @default(autoincrement())
+  nombre    String
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  productos Producto[]
+}
+
+model Producto {
+  id          Int            @id @default(autoincrement())
+  nombre      String
+  precio      Decimal        @db.Decimal(10, 2)
+  stock       Int            @default(0)
+  categoriaId Int?
+  categoria   Categoria?     @relation(fields: [categoriaId], references: [id])
+  createdAt   DateTime       @default(now())
+  updatedAt   DateTime       @updatedAt
+  detalles    DetallePedido[]
+}
+
+model Pedido {
+  id        Int            @id @default(autoincrement())
+  usuarioId  Int
+  usuario    Usuario        @relation(fields: [usuarioId], references: [id])
+  total      Decimal        @db.Decimal(10, 2)
+  estado     String         @default("PENDIENTE")
+  createdAt  DateTime       @default(now())
+  updatedAt  DateTime       @updatedAt
+  detalles   DetallePedido[]
+}
+
+model DetallePedido {
+  id            Int      @id @default(autoincrement())
+  pedidoId      Int
+  pedido        Pedido   @relation(fields: [pedidoId], references: [id], onDelete: Cascade)
+  productoId    Int
+  producto      Producto @relation(fields: [productoId], references: [id])
+  cantidad      Int
+  precioUnitario Decimal @db.Decimal(10, 2)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
