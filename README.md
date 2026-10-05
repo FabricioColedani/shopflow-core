@@ -1,4 +1,16 @@
-## Evidencias de Ejecución
+## Actividad 22/09
+### Login JWT
+<img width="754" height="637" alt="image" src="https://github.com/user-attachments/assets/cc58d125-d975-438b-9e99-1b55dd6f5214" />
+
+### Petición de Pedido con Token
+<img width="754" height="455" alt="image" src="https://github.com/user-attachments/assets/b0da62a2-9ca6-4406-be2d-e5b518d6ed9e" />
+
+### Swagger Actualizado
+<img width="1919" height="855" alt="image" src="https://github.com/user-attachments/assets/f6828231-fde6-4785-995c-bdbf5aad5130" />
+
+
+
+## Actividad 14/09
 
 ### Swagger Ejecutado
 <img width="1919" height="1039" alt="SwaggerEjecutado" src="https://github.com/user-attachments/assets/00e7ecd3-27c3-497d-963c-e733ac9867d6" />
