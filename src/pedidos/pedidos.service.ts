@@ -3,8 +3,9 @@ import { AppError } from '../errors/app-error';
 import { CrearPedidoDto } from './pedido.dto';
 import { PedidosRepository } from './pedidos.repository';
 
+
 export class PedidosService {
-  constructor(private readonly repository: PedidosRepository) {}
+  constructor(private repository: any) {}
 
   async procesarPedido(dto: CrearPedidoDto) {
     this.validarPedido(dto);

@@ -1,1 +1,4 @@
 node_modules
+JWT_SECRET="mi_clave_secreta_super_segura_123!"
+JWT_REFRESH_SECRET="mi_clave_secreta_refresh_456!"
+ALLOWED_ORIGIN="http://localhost:3000"

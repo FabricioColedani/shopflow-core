@@ -1,0 +1,100 @@
+openapi: 3.0.3
+info:
+  title: API Ecommerce - Documentación interactiva
+  version: 1.0.0
+  description: API REST con arquitectura en capas, Prisma ORM, JWT y Swagger.
+paths:
+  /api/auth/registro:
+    post:
+      summary: Registrar un nuevo usuario
+      tags:
+        - Autenticación
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                nombre:
+                  type: string
+                  example: "Faabri"
+                email:
+                  type: string
+                  example: "faabri@ejemplo.com"
+                password:
+                  type: string
+                  example: "Password123!"
+                rol:
+                  type: string
+                  example: "USER"
+      responses:
+        '201':
+          description: Usuario registrado exitosamente
+        '400':
+          description: Datos inválidos o email ya existente
+
+  /api/auth/login:
+    post:
+      summary: Iniciar sesión y obtener tokens JWT
+      tags:
+        - Autenticación
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  example: "faabri@ejemplo.com"
+                password:
+                  type: string
+                  example: "Password123!"
+      responses:
+        '200':
+          description: Inicio de sesión exitoso
+        '401':
+          description: Credenciales inválidas
+
+  /api/pedidos:
+    post:
+      summary: Realizar un checkout de compras
+      tags:
+        - Pedidos
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                usuarioId:
+                  type: integer
+                  example: 1
+                productosComprados:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      productoId:
+                        type: integer
+                        example: 1
+                      cantidad:
+                        type: integer
+                        example: 2
+      responses:
+        '201':
+          description: Pedido procesado exitosamente
+        '400':
+          description: Datos inválidos o stock insuficiente
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

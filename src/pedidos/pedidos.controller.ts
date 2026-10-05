@@ -1,13 +1,17 @@
-import { NextFunction, Request, Response } from 'express';
+import { Request, Response, NextFunction } from 'express';
 import { PedidosService } from './pedidos.service';
 
 export class PedidosController {
-  constructor(private readonly service: PedidosService) {}
+  constructor(private service: PedidosService) {}
 
-  procesarPedido = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+  crear = async (req: Request, res: Response, next: NextFunction) => {
     try {
-      const pedido = await this.service.procesarPedido(req.body);
-      res.status(201).json(pedido);
+      const { usuarioId, productosComprados } = req.body;
+      
+      // Llamar a procesarPedido en lugar de crearPedido
+      const pedidoRealizado = await this.service.procesarPedido({ usuarioId, productosComprados });
+      
+      return res.status(201).json(pedidoRealizado);
     } catch (error) {
       next(error);
     }
