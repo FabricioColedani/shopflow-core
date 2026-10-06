@@ -8,6 +8,8 @@
 ### Swagger Actualizado
 <img width="1919" height="855" alt="image" src="https://github.com/user-attachments/assets/f6828231-fde6-4785-995c-bdbf5aad5130" />
 
+### Implementación de JwT en BD (Prisma)
+<img width="703" height="304" alt="image" src="https://github.com/user-attachments/assets/8ac39993-c4fc-4ddb-b6ed-78c83b5e456c" />
 
 
 ## Actividad 14/09
